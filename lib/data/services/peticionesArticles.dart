@@ -28,10 +28,10 @@ class PeticionesArticles {
   static Future<List<Mensajes>> registrarArticles(
       String foto, String detalle, String codigo, String idUser) async {
     var url = Uri.parse(
-        "https://crudarticulos.000webhostapp.com/APIARTICULOS/agregarArticulos.php");
+        "https://crudarticulos.000webhostapp.com/APIARTICULOS/agregarArticles.php");
 
     final response = await http.post(url,
-        body: {'foto': foto, 'detalle': detalle, 'codigo': codigo, 'idUser': idUser});
+        body: {'fotos': foto, 'detalles': detalle, 'codigos': codigo, 'iduser': idUser});
 
     print(response.statusCode);
     print(response.body);
@@ -47,12 +47,12 @@ class PeticionesArticles {
 
   // editar
   static Future<List<Mensajes>> editarArticles(
-      String id, String f, String d, String c) async {
+      String id, String f, String d, String c,String iduser) async {
     var url = Uri.parse(
         "https://crudarticulos.000webhostapp.com/APIARTICULOS/editarArticle.php");
 
     final response = await http
-        .post(url, body: {'id': id, 'foto': f, 'detalle': d, 'codigo': c});
+        .post(url, body: {'id': id, 'fotos': f, 'detalles': d, 'codigos': c,'iduser':iduser});
 
     print(response.statusCode);
     print(response.body);

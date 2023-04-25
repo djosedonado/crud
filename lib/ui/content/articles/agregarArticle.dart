@@ -95,9 +95,8 @@ class RegistrarArticulos extends StatelessWidget {
                         child: IconButton(
                           color: Colors.white,
                           onPressed: () {
-                            print(controlu.listaUserLogin![0].id.toString());
                             controla
-                                .registarArticle(foto.text, detalle.text, codigo.text, controlu.listaUserLogin![0].id.toString())
+                                .registarArticle(foto.text,detalle.text,codigo.text,controlu.listaUserLogin![0].id.toString())
                                 .then((value) {
                               Get.snackbar(
                                   'Clientes', controlu.listaMensajes![0].mensaje,

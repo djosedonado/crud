@@ -17,9 +17,9 @@ class Articles {
     return Articles(
       id: int.parse(jsonMap['id']),
       foto: jsonMap['foto'],
-      detalle: jsonMap['detalles'],
+      detalle: jsonMap['detalle'],
       codigo: jsonMap['codigo'],
-      idUser: int.parse(jsonMap['idUser']),
+      idUser: int.parse(jsonMap['iduser']),
     );
   }
 }

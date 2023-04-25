@@ -14,7 +14,7 @@ class User {
     return User(
         id: int.parse(jsonMap['id']),
         nombre: jsonMap['nombre'],
-        user: jsonMap['user'],
-        password: jsonMap['password']);
+        user: jsonMap['email'],
+        password: jsonMap['pass']);
   }
 }

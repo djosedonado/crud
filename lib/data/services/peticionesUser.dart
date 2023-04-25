@@ -30,7 +30,7 @@ class PeticionesUser {
     var url = Uri.parse(
         "https://crudarticulos.000webhostapp.com/APIARTICULOS/validarUser.php");
 
-    final response = await http.post(url, body: {'user': u, 'password': p});
+    final response = await http.post(url, body: {'user': u, 'pass': p});
 
     return compute(convertirAlista2, response.body);
   }

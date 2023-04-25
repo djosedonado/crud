@@ -22,7 +22,7 @@ class App extends StatelessWidget {
         "/register": (context) => const Register(),
         "/listarticles": (context) => const ListArticles(),
         "/agregarArticulos": (context) => const RegistrarArticulos(),
-        "/editararticle": (context) => const EditarArticles(),
+        "/editararticle": (context) => const EditarArticulos(),
       },
     );
   }

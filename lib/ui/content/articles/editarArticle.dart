@@ -1,31 +1,28 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../domain/controller/controllerArticles.dart';
 import '../../../domain/controller/controllerUser.dart';
 
-class EditarArticles extends StatelessWidget {
-  const EditarArticles({super.key});
+class EditarArticulos extends StatelessWidget {
+  const EditarArticulos({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ControlArticles controla = Get.find();
     ControlUser controlu = Get.find();
+    ControlArticles controla = Get.find();
     TextEditingController foto = TextEditingController();
-    TextEditingController detalles = TextEditingController();
+    TextEditingController detalle = TextEditingController();
     TextEditingController codigo = TextEditingController();
-    foto.text = controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].foto;
-    detalles.text = controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].detalle;
-    codigo.text = controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].codigo;
-    return Container(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        backgroundColor: Colors.transparent,
-        body: Stack(children: [
-          SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Editar Articles"),
+        actions: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.add))
+        ],
+      ),
+      body:  SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.only(
                   right: 35,
@@ -41,17 +38,17 @@ class EditarArticles extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Color.fromARGB(255, 12, 11, 11)),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
-                    hintText: 'foto',
-                    hintStyle: const TextStyle(color: Color.fromARGB(255, 7, 7, 7)),
+                    hintText: 'url',
+                    hintStyle: const TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
                 TextField(
-                  controller: detalles,
+                  controller: detalle,
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -59,10 +56,10 @@ class EditarArticles extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Color.fromARGB(255, 5, 5, 5)),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                     hintText: 'detalle',
-                    hintStyle: const TextStyle(color: Color.fromARGB(255, 10, 9, 9)),
+                    hintStyle: const TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(
@@ -77,10 +74,10 @@ class EditarArticles extends StatelessWidget {
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(color: Color.fromARGB(255, 14, 13, 13)),
+                      borderSide: const BorderSide(color: Colors.black),
                     ),
                     hintText: 'codigo',
-                    hintStyle: const TextStyle(color: Color.fromARGB(255, 10, 9, 9)),
+                    hintStyle: const TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(
@@ -90,9 +87,9 @@ class EditarArticles extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        'Editar ARTICULO',
+                        'Registrarse',
                         style: TextStyle(
-                          color: Color.fromARGB(255, 10, 10, 10),
+                          color: Colors.white,
                           fontSize: 27,
                           fontWeight: FontWeight.w700,
                         ),
@@ -101,10 +98,11 @@ class EditarArticles extends StatelessWidget {
                         radius: 30,
                         backgroundColor: const Color(0xff4c505b),
                         child: IconButton(
-                          color: const Color.fromARGB(255, 5, 5, 5),
+                          color: Colors.white,
                           onPressed: () {
+                            print(controlu.listaUserLogin![0].id.toString());
                             controla
-                                .editarArticle(controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].id.toString(),foto.text, detalles.text, codigo.text)
+                                .editarArticle(controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].id.toString(), foto.text, detalle.text, codigo.text,controla.listaArticlesFinal![controla.listaArticlesFinal![0].idFinal].idUser.toString())
                                 .then((value) {
                               Get.snackbar(
                                   'Clientes', controlu.listaMensajes![0].mensaje,
@@ -113,8 +111,6 @@ class EditarArticles extends StatelessWidget {
                                   shouldIconPulse: true,
                                   backgroundColor: Colors.yellow);
                             });
-                            controla.listArticles().then(
-                                  (value) => Get.toNamed("/listarticles"));
                           },
                           icon: const Icon(Icons.arrow_forward),
                         ),
@@ -143,8 +139,6 @@ class EditarArticles extends StatelessWidget {
               ]),
             ),
           ),
-        ]),
-      ),
     );
   }
 }
